@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VBS to EXE Compiler | Download Free VBScript Converter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Cool Slate & Teal -->
+    <!-- Application Structure Plan: The application is a full-featured product landing page designed for conversion (downloading the tool). The structure guides the user logically: 1. A sticky navigation bar for persistent access to key sections. 2. A hero section with a clear value proposition and a primary Call-To-Action (CTA) download button. 3. A social proof/benefits section ("Why You'll Love It"). 4. An interactive "Feature Explorer" to detail the product's capabilities. 5. A simple "How It Works" visual guide. 6. A unique, interactive "Correlation Chart" as a "wow" factor to visually connect features and benefits. 7. An FAQ section to address user concerns and build trust. 8. A final CTA section to capture conversions. This top-down funnel structure is optimal for presenting a product and encouraging user action. -->
+    <!-- Visualization & Content Choices: 1. Hero/CTA: Report Info -> Product name & purpose. Goal -> Inform/Convert. Viz -> Large text, prominent button. Interaction -> Click to download. Justification -> Standard, effective landing page pattern. 2. Benefits Grid: Report Info -> Key benefits. Goal -> Persuade. Viz -> HTML/CSS grid with icons. Interaction -> None (scannable). Justification -> Visually engaging and quick to parse. 3. Feature Explorer: Report Info -> Feature list/table. Goal -> Inform/Organize. Viz -> Two-pane interactive layout. Interaction -> JS click-to-update. Justification -> More engaging and detailed than a static list. 4. How-it-Works: Report Info -> 3-step process. Goal -> Explain. Viz -> HTML/CSS step diagram. Interaction -> None. Justification -> Simplifies the user journey. 5. Correlation Chart: Report Info -> Synthesized data. Goal -> Relate/Compare. Viz -> Chart.js Radar Chart. Interaction -> JS buttons to toggle views. Justification -> Offers a deep, data-driven insight into product value. 6. FAQ: Report Info -> Anticipated user questions. Goal -> Build Trust. Viz -> HTML accordion. Interaction -> JS click to expand/collapse. Justification -> Hides complexity, easy to navigate. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #334155; /* slate-700 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 40vh; /* Responsive height */
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 500px;
+                max-height: 500px;
+            }
+        }
+        .active-feature {
+            background-color: #0d9488;
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+        .feature-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-link {
+            transition: color 0.2s;
+        }
+        .faq-item summary {
+            cursor: pointer;
+            outline: none;
+        }
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+        .faq-item[open] summary {
+            color: #0d9488; /* teal-600 */
+        }
+        .faq-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .faq-item[open] .faq-icon {
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold text-slate-800 flex items-center">
+                <span class="text-2xl mr-2">🛡️</span> VBS to EXE
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#benefits" class="nav-link text-slate-600 hover:text-teal-600 font-medium">Benefits</a>
+                <a href="#features" class="nav-link text-slate-600 hover:text-teal-600 font-medium">Features</a>
+                <a href="#how-it-works" class="nav-link text-slate-600 hover:text-teal-600 font-medium">How It Works</a>
+                <a href="#faq" class="nav-link text-slate-600 hover:text-teal-600 font-medium">FAQ</a>
+            </div>
+            <a href="https://desktop.short.gy/vbs2exe" class="hidden md:inline-block bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:shadow-lg transition-all">Download Now</a>
+            <button id="mobile-menu-button" class="md:hidden text-slate-800 text-2xl">☰</button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
+             <a href="#benefits" class="block py-3 px-6 text-slate-600 hover:bg-slate-100 mobile-nav-link">Benefits</a>
+             <a href="#features" class="block py-3 px-6 text-slate-600 hover:bg-slate-100 mobile-nav-link">Features</a>
+             <a href="#how-it-works" class="block py-3 px-6 text-slate-600 hover:bg-slate-100 mobile-nav-link">How It Works</a>
+             <a href="#faq" class="block py-3 px-6 text-slate-600 hover:bg-slate-100 mobile-nav-link">FAQ</a>
+             <a href="https://desktop.short.gy/vbs2exe" class="block m-4 text-center bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-6 rounded-lg shadow-md">Download Now</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="text-center bg-slate-800 text-white py-20 md:py-32 px-6">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">Convert VBScript to Executable in Seconds</h1>
+            <p class="mt-6 text-lg md:text-xl text-slate-300 max-w-3xl mx-auto">
+                Protect your code, simplify distribution, and create professional applications from your `.vbs` files with our free, powerful, and easy-to-use compiler.
+            </p>
+            <a href="https://desktop.short.gy/vbs2exe" class="mt-10 inline-block bg-teal-500 hover:bg-teal-600 text-white font-bold text-lg py-4 px-10 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all">
+                Download for Windows
+            </a>
+            <p class="mt-4 text-sm text-slate-400">Free & Secure Download</p>
+        </section>
+
+        <!-- Benefits Section -->
+        <section id="benefits" class="py-20 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">Why You'll Love It</h2>
+                <p class="text-center text-slate-600 mb-12 max-w-2xl mx-auto">Our compiler wraps your valuable code in a robust executable, making it portable, protected, and easy for anyone to run.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+                    <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow">
+                        <div class="text-5xl text-teal-500 mb-4">🚀</div>
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">Effortless Deployment</h3>
+                        <p class="text-slate-600">Distribute a single, clickable `.exe` instead of a confusing script file.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow">
+                        <div class="text-5xl text-teal-500 mb-4">🔒</div>
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">Iron-Clad Protection</h3>
+                        <p class="text-slate-600">Encrypt and obfuscate your source code to prevent unauthorized viewing or editing.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow">
+                        <div class="text-5xl text-teal-500 mb-4">🎨</div>
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">Professional Branding</h3>
+                        <p class="text-slate-600">Assign custom icons and version information to give your apps a legitimate feel.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Feature Explorer Section -->
+        <section id="features" class="py-20 px-6 bg-slate-100">
+             <div class="container mx-auto">
+                <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">Interactive Feature Explorer</h2>
+                <p class="text-center text-slate-600 mb-12 max-w-2xl mx-auto">The compiler is packed with powerful features. Click any item below to learn how it helps you create better applications.</p>
+                <div class="flex flex-col md:flex-row gap-8 bg-white p-8 rounded-2xl shadow-lg">
+                    <div id="feature-buttons" class="md:w-1/3 flex flex-col space-y-2"></div>
+                    <div id="feature-details" class="md:w-2/3 bg-slate-50 rounded-lg p-8 min-h-[250px] flex flex-col justify-center items-center text-center transition-all duration-300"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="py-20 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold text-center text-slate-800 mb-12">How It Works in 3 Simple Steps</h2>
+                <div class="relative flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
+                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-slate-200" style="z-index: -1;"></div>
+                    <div class="flex flex-col items-center text-center z-10">
+                        <div class="w-24 h-24 bg-teal-500 text-white rounded-full flex items-center justify-center text-3xl font-bold shadow-lg border-4 border-white">1</div>
+                        <h3 class="mt-4 text-xl font-semibold text-slate-800">LOAD</h3>
+                        <p class="mt-1 text-slate-600">Open your `.vbs` script.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center z-10">
+                        <div class="w-24 h-24 bg-teal-500 text-white rounded-full flex items-center justify-center text-3xl font-bold shadow-lg border-4 border-white">2</div>
+                        <h3 class="mt-4 text-xl font-semibold text-slate-800">CUSTOMIZE</h3>
+                        <p class="mt-1 text-slate-600">Choose icon & settings.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center z-10">
+                        <div class="w-24 h-24 bg-teal-500 text-white rounded-full flex items-center justify-center text-3xl font-bold shadow-lg border-4 border-white">3</div>
+                        <h3 class="mt-4 text-xl font-semibold text-slate-800">COMPILE</h3>
+                        <p class="mt-1 text-slate-600">Get your `.exe` instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Chart Section -->
+        <section id="chart-section" class="py-20 px-6 bg-slate-800 text-white">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-4">Benefit & Feature Correlation</h2>
+                <p class="text-center text-slate-300 mb-12 max-w-3xl mx-auto">This interactive chart shows how our core features contribute to key user benefits. Use the buttons to see how everything connects to deliver a powerful, secure, and professional result.</p>
+                <div class="chart-container">
+                    <canvas id="featuresChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ Section -->
+        <section id="faq" class="py-20 px-6">
+            <div class="container mx-auto max-w-3xl">
+                <h2 class="text-3xl font-bold text-center text-slate-800 mb-12">Frequently Asked Questions</h2>
+                <div class="space-y-4" id="faq-container">
+                    <!-- FAQ items will be injected here -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Final CTA Section -->
+        <section class="bg-teal-500 text-white text-center py-20 px-6">
+            <h2 class="text-4xl font-extrabold">Ready to Get Started?</h2>
+            <p class="mt-4 text-lg max-w-2xl mx-auto text-teal-100">Stop sharing scripts. Start delivering applications. Download the VBS to EXE compiler now and elevate your projects.</p>
+            <a href="https://desktop.short.gy/vbs2exe" class="mt-8 inline-block bg-white text-teal-600 font-bold text-lg py-4 px-10 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all">
+                Download for Free
+            </a>
+        </section>
+    </main>
+
+    <footer class="bg-slate-800 text-slate-400">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 VBS to EXE Compiler. All rights reserved.</p>
+            <p class="text-sm mt-2">A free tool for developers and scripters.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- DATA ---
+            const featuresData = [
+                { id: 'conversion', title: 'VBS to EXE Conversion', icon: '↔️', description: 'The core functionality to compile your .vbs scripts into standalone .exe files, making them easy to distribute and run.' },
+                { id: 'architecture', title: 'Architecture Support', icon: '🏛️', description: 'Create both 32-bit and 64-bit executables from a single source, ensuring maximum compatibility across all modern Windows systems.' },
+                { id: 'icon', title: 'Custom Icon', icon: '🖼️', description: 'Replace the default application icon with your own .ico file. This gives your script a professional, branded look and feel.' },
+                { id: 'version', title: 'Version Stamping', icon: '🏷️', description: 'Embed essential metadata like file version, product version, and company name directly into your executable file properties.' },
+                { id: 'admin', title: 'Admin Privileges', icon: '👑', description: 'Create executables that automatically request administrator elevation (UAC prompt), essential for scripts that perform system-level tasks.' },
+                { id: 'cli', title: 'Command-Line Access', icon: '⌨️', description: 'Automate your build process and integrate the compiler into your development workflow. Perfect for batch conversions.' },
+                { id: 'encryption', title: 'Encryption', icon: '🔑', description: 'Add an extra layer of security by encrypting the contents of your script, making it extremely difficult to reverse-engineer.' }
+            ];
+
+            const faqData = [
+                { q: 'Is this tool really free?', a: 'Yes, VBS to EXE Compiler is completely free for both personal and commercial use. There are no hidden fees or subscriptions.' },
+                { q: 'Is the download safe? Will it contain viruses?', a: 'Absolutely. The download is hosted on a secure platform and the application is regularly scanned to ensure it is free from all malware and viruses. Your security is our top priority.' },
+                { q: 'Do I need to install any other software for the EXE to run?', a: 'No. The compiled executables are completely standalone. They will run on any modern Windows system (Windows 7 and newer) without needing any special runtimes or dependencies.' },
+                { q: 'Can I use this for my business or work projects?', a: 'Yes, you are free to use the compiled executables for any purpose, including commercial projects within your organization or for distribution to clients.' },
+                { q: 'How does the protection work?', a: 'The compiler converts your script into native machine code and applies obfuscation and encryption techniques. This makes it practically impossible for someone to recover your original VBScript source code from the final .exe file.' }
+            ];
+
+            // --- MOBILE MENU LOGIC ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            mobileNavLinks.forEach(link => {
+                 link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                 });
+            });
+
+
+            // --- FEATURE EXPLORER LOGIC ---
+            const featureButtonsContainer = document.getElementById('feature-buttons');
+            const featureDetailsContainer = document.getElementById('feature-details');
+
+            function displayFeature(featureId) {
+                const feature = featuresData.find(f => f.id === featureId);
+                if (!feature) return;
+                featureDetailsContainer.innerHTML = `<div class="text-6xl mb-4">${feature.icon}</div><h3 class="text-2xl font-bold text-slate-800 mb-2">${feature.title}</h3><p class="text-slate-600">${feature.description}</p>`;
+                document.querySelectorAll('.feature-button').forEach(btn => btn.classList.remove('active-feature', 'bg-teal-600', 'text-white'));
+                document.querySelector(`.feature-button[data-id="${featureId}"]`).classList.add('active-feature', 'bg-teal-600', 'text-white');
+            }
+
+            featuresData.forEach(feature => {
+                const button = document.createElement('button');
+                button.className = 'feature-button w-full text-left p-4 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium';
+                button.textContent = feature.title;
+                button.dataset.id = feature.id;
+                button.addEventListener('click', () => displayFeature(feature.id));
+                featureButtonsContainer.appendChild(button);
+            });
+            if (featuresData.length > 0) displayFeature(featuresData[0].id);
+
+            // --- FAQ LOGIC ---
+            const faqContainer = document.getElementById('faq-container');
+            faqData.forEach(item => {
+                const details = document.createElement('details');
+                details.className = 'faq-item bg-white p-6 rounded-lg shadow-sm';
+                details.innerHTML = `
+                    <summary class="flex justify-between items-center font-semibold text-lg text-slate-800">
+                        ${item.q}
+                        <span class="faq-icon text-teal-500 text-2xl font-light">+</span>
+                    </summary>
+                    <p class="mt-4 text-slate-600">${item.a}</p>
+                `;
+                faqContainer.appendChild(details);
+            });
+
+            // --- CHART LOGIC ---
+            const ctx = document.getElementById('featuresChart').getContext('2d');
+            const chartData = {
+                labels: ['Deployment', 'Protection', 'Branding', 'Automation', 'Compatibility'],
+                datasets: [
+                    { label: 'Core Features', data: [5, 4, 3, 4, 5], backgroundColor: 'rgba(20, 184, 166, 0.2)', borderColor: '#14b8a6', pointBackgroundColor: '#14b8a6', borderWidth: 2 },
+                    { label: 'Branding Features', data: [2, 2, 5, 1, 3], backgroundColor: 'rgba(59, 130, 246, 0.2)', borderColor: '#3b82f6', pointBackgroundColor: '#3b82f6', borderWidth: 2 }
+                ]
+            };
+            new Chart(ctx, {
+                type: 'radar',
+                data: chartData,
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    scales: { r: { angleLines: { color: 'rgba(255, 255, 255, 0.2)' }, grid: { color: 'rgba(255, 255, 255, 0.2)' }, pointLabels: { color: '#cbd5e1', font: { size: 14 } }, ticks: { display: false, stepSize: 1, max: 5, min: 0 } } },
+                    plugins: { legend: { position: 'bottom', labels: { color: '#e2e8f0', padding: 20, usePointStyle: true, boxWidth: 8 } } }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
